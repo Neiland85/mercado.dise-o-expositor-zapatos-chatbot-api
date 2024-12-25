@@ -1,47 +1,34 @@
-<<<<<<< HEAD
-const express = require('express');
-require('dotenv').config();
-const port = process.env.PORT || 3000;
+const express = require("express");
+const dotenv = require("dotenv");
 
-import productsRouter from "./routes/products.routes.js"; // Importar rutas
+// Importar rutas
+const productsRouter = require("./routes/products.routes.js"); // Ruta para productos
+const chatbotRouter = require("./routes/chatbot.routes.js");   // Ruta para el ChatBot
 
-const app = express();
-
-app.use(express.json()); //para trabajar  con peticiones tipo JSON
-app.use(express.urlencoded({ extended: true})); //Permite la extensión o recibir cadenas por URL con otras variaciones. (post, get etc..)
-//Rutas base de nuestro servidor
-
-app.use("/", productsRouter);
-
-//arranca nuestra app.
-app.listen(port, () => {
- console.log(`Example bot running  http://localhost:${port}`);
-})
-=======
-// server.js
-const express = require('express');
-const dotenv = require('dotenv');
-const routes = require('./routes/products.routes');
-const app = express();
-
-// Load environment variables
+// Configurar variables de entorno
 dotenv.config();
 
-// Middleware to parse JSON
+// Definir puerto
+const PORT = process.env.PORT || 3004; // Usar el puerto definido en las variables de entorno o 3004 por defecto
+
+// Inicializar app de Express
+const app = express();
+
+// Middleware para parsear JSON y formularios
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use('/api/products', routes);
-
-// Root endpoint
-app.get('/', (req, res) => {
-    res.send('Welcome to the Mercado de Diseño API');
+// Ruta raíz para comprobar funcionamiento
+app.get("/", (req, res) => {
+  res.send("Servidor funcionando correctamente");
 });
 
-// Server configuration
-const PORT = process.env.PORT || 3000;
+// Configurar rutas
+app.use("/api/products", productsRouter); // Rutas para productos
+app.use("/api/chatbot", chatbotRouter);   // Rutas para el ChatBot
+
+// Arrancar el servidor
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 
->>>>>>> 68db2c0 (feat: Added server.js to main branch)
