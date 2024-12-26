@@ -1,26 +1,38 @@
-// server.js
+// Importar dependencias
 const express = require('express');
-const dotenv = require('dotenv');
-const routes = require('./routes/products.routes');
+require('dotenv').config();
+
+// Variables de configuración
+const port = process.env.PORT || 3000;
+
+// Importar rutas
+import productsRouter from './routes/products.routes.js';
+import chatbotRouter from './routes/chatbot.routes.js'; // Nueva ruta para ChatBot
+
+// Inicializar la aplicación
 const app = express();
 
-// Load environment variables
-dotenv.config();
+// Middlewares
+app.use(express.json()); // Para trabajar con peticiones tipo JSON
+app.use(express.urlencoded({ extended: true })); // Permite recibir cadenas por URL con otras variaciones (POST, GET, etc.)
 
-// Middleware to parse JSON
-app.use(express.json());
+// Rutas base del servidor
+app.use('/', productsRouter);
+app.use('/api/chatbot', chatbotRouter); // Ruta base para el ChatBot
 
-// Routes
-app.use('/api/products', routes);
-
-// Root endpoint
-app.get('/', (req, res) => {
-    res.send('Welcome to the Mercado de Diseño API');
+// Manejo de errores para rutas no encontradas
+app.use((req, res, next) => {
+  res.status(404).json({ error: 'Ruta no encontrada' });
 });
 
-// Server configuration
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+// Manejo centralizado de errores
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ error: 'Error interno del servidor' });
+});
+
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });
 
