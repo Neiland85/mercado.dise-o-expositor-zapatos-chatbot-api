@@ -1,35 +1,37 @@
 {
-    "name": "zapatos-chatbot-api",
-    "version": "1.0.0",
-    "description": "API para bot de zapatos",
-    "main": "server.js",
-    "type": "module",
-    "scripts": {
-        "dev": "node server.js",
-        "start": "node server.js",
-        "test:auth": "node ./auth-tests/auth.tests.js",
-        "test:component": "echo \"component Ok from React-app and testing by API and middleware in 'axios'.\" "
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Neiland85/mercado.dise-o-expositor-zapatos-chatbot-api.git"
-    },
-    "author": "Your name or proyect",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Neiland85/mercado.dise-o-expositor-zapatos-chatbot-api/issues"
-    },
-    "homepage": "https://github.com/Neiland85/mercado.dise-o-expositor-zapatos-chatbot-api#readme",
-    "dependencies": {
-        "axios": "^1.7.9",
-        "dotenv": "^16.4.1",
-        "express": "^4.18.2",
-        "jsonwebtoken": "^9.0.2",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0",
-        "react-router-dom": "^6.28.1",
-        "sass": "^1.83.0",
-        "swagger-jsdoc": "^6.2.8",
-        "tailwindcss": "^3.4.17"
-    }
+  "name": "zapatos-chatbot-api",
+  "version": "1.0.0",
+  "description": "API para bot de zapatos",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test:auth": "node ./auth-tests/auth.tests.js",
+    "test:component": "echo \"component Ok from React-app and testing by API and middleware in 'axios'.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neiland85/mercado.dise-o-expositor-zapatos-chatbot-api.git"
+  },
+  "author": "Neil Muñoz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Neiland85/mercado.dise-o-expositor-zapatos-chatbot-api/issues"
+  },
+  "homepage": "https://github.com/Neiland85/mercado.dise-o-expositor-zapatos-chatbot-api#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^6.28.1",
+    "sass": "^1.83.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "tailwindcss": "^3.4.17"
+  }
 }
+
