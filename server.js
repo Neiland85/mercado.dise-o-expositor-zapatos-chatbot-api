@@ -1,23 +1,28 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import productsRouter from "./routes/products.routes.js"; // Importar rutas
-import chatbotRouter from "./routes/chatbot.routes.js"; // Nueva ruta para ChatBot
+import express from "express";
+import dotenv from "dotenv";
+import productsRouter from "./routes/products.routes.js";
+import chatbotRouter from "./routes/chatbot.routes.js"; // Ruta para el ChatBot
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3004;
 
 const app = express();
 
 // Middlewares para manejar peticiones
-app.use(express.json()); // Para trabajar con peticiones tipo JSON
-app.use(express.urlencoded({ extended: true })); // Permite recibir cadenas por URL en varias formas (post, get, etc.)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Rutas base de nuestro servidor
-app.use("/", productsRouter);
-app.use("/api/chatbot", chatbotRouter); // Nueva ruta para el ChatBot
+// Ruta base para validar funcionamiento
+app.get("/", (req, res) => {
+  res.send("Servidor funcionando correctamente");
+});
 
-// Arranca nuestra app
+// Rutas específicas
+app.use("/products", productsRouter);
+app.use("/api/chatbot", chatbotRouter);
+
+// Arrancar el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });

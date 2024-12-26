@@ -1,31 +1,17 @@
+import express from "express";
 
- import express from 'express';
-  import { allZapatos }  from '../models/zapatos.model.js';
+const router = express.Router();
 
-import validateTokenMiddleware from '../middlewares/validateRequest.js';
+// Simulación de datos de productos
+const products = [
+  { id: 1, name: "Zapato Deportivo", price: 50 },
+  { id: 2, name: "Zapato Formal", price: 80 },
+];
 
-  const router = express.Router();
+// Ruta para obtener todos los productos
+router.get("/", (req, res) => {
+  res.json(products);
+});
 
+export default router;
 
- router.post('/auth', function (req, res) {
- const authHeader = req.headers.authorization;
- if (authHeader == "secret"  || authHeader =="test" ){
- // genera token
-   const payload = {  "user_id" : "id_a_verificar",   "date":Date.now()  }
-   jwt.sign( payload ,  process.env.JWT_SECRET, { algorithm: 'HS256' },  function (error, token) {
-          res.json({"response": "login OK!! ",  token: token});
-          });
-      return
-   }
-  res.json({"response":"Login erroneo"})
- });
-
-
-router.get("/zapatos",validateTokenMiddleware , function ( req,res ) {
-   res.json(allZapatos)
-  })
-
-
-router.get('/test', validateTokenMiddleware, function (req,res){  //cambio de ruta con método de lectura  como get y ya por sus validaciones pre establecidas mediante el middlewre
-        res.send("datos enviados al profile: " +  req.user   );  });
- export default router
