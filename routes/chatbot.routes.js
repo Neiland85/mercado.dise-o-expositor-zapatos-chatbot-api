@@ -1,8 +1,11 @@
-const express = require('express');
+
+import express from "express";
+import chatbotBasic from "../middlewares/chatbotBasic.js";
+
 const router = express.Router();
-const chatbotBasic = require('../middlewares/chatbotBasic');
 
-router.post('/chatbot', chatbotBasic);
+// Ruta para manejar solicitudes de chatbot
+router.post("/", chatbotBasic);
 
-module.exports = router;
+export default router;
 
